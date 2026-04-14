@@ -1,11 +1,11 @@
 [weixin]
-appid = wx2b5cadbc886f5dba
-secret = f609fd660d6795451c869bbdf2d1e957
+appid = 
+secret = 
 
 [article]
-html_file = AI时代这个能力比写代码更值钱.html
-title = AI时代能力比代码值钱
-digest = 判断方向才是护城河
+html_file = tmp/
+title = 
+digest = 
 
 [publish]
 thumb_media_id = 96S8nEuNSKB1c3JGOfiU23SEFs2RM-7375B_ZH2erqecUCreN39iOYFGabrYQ3PN

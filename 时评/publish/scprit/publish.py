@@ -4,8 +4,9 @@ import configparser
 import os
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
+project_dir = os.path.dirname(script_dir)
 config = configparser.ConfigParser()
-config.read(os.path.join(script_dir, 'config.properties'), encoding='utf-8')
+config.read(os.path.join(project_dir, 'config.properties'), encoding='utf-8')
 
 token_url = f"https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={config['weixin']['appid']}&secret={config['weixin']['secret']}"
 token_resp = requests.get(token_url).json()
@@ -17,7 +18,7 @@ if 'access_token' not in token_resp:
 token = token_resp['access_token']
 print("Token OK")
 
-html_path = os.path.join(script_dir, config['article']['html_file'])
+html_path = os.path.join(project_dir, config['article']['html_file'])
 with open(html_path, 'r', encoding='utf-8') as f:
     html_content = f.read()
 
