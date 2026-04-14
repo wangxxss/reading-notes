@@ -78,6 +78,6 @@ description: "Revises existing articles into viral WeChat public account posts u
 4. 优化内容（补案例、改语言、强价值）
 5. 完善细节（加粗重点、加引导）
 6. 检查避坑（预览排版、核对事实）
-7. 保存新文件（不改原文，另存）
+7. 保存新文件（不改原文，另存） ，新文件，存放在./publish/tmp目录下
 
 关键提醒：修改不是"否定原文"，而是"放大优势"——保留原文优质案例和独特观点，在此基础上优化。
