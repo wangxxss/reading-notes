@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hermes Agent：会学习的 AI 助手，这次是真的记得你</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #f5f5f5;">
+<section style="padding: 20px 15px; font-size: 16px; color: #333; line-height: 1.8; text-align: left;">
+
+<section style="background-color: #f0f4ff; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+<p style="margin-bottom: 0; color: #333;">
+你有没有这种感觉：跟 AI 聊项目，第一天挺顺的。第二天一打开，它一脸无辜地看着你："亲，有什么可以帮你的？"
+第三次、第十次——永远是个崭新的陌生人。需求要重新说，背景要重新讲，踩过的坑要重新踩一遍。<br><br>
+你以为在跟同一个 AI 打交道，其实每次都是重启。<br><br>
+大多数 AI 助手都有这个毛病：记不住你。<br><br>
+<strong>Hermes Agent 想改变这件事。</strong>
+</p>
+</section>
+
+<h2 style="font-size: 18px; font-weight: bold; margin-top: 25px; margin-bottom: 15px; padding-left: 12px; border-left: 4px solid #07c160;">
+一个会"长记性"的 AI 助手
+</h2>
+
+<p style="margin-bottom: 15px;">
+Hermes Agent 来自 Nous Research 实验室。<br><br>
+你可能没听过这个名字，但他们家的 Hermes 系列模型在开源社区名气不小——工具调用能力是出了名的强。2024 年出 Hermes 3，2025 年预计出 Hermes 4，加了混合推理功能，想要快答案就用快速模式，想要深度思考就打开详细模式。
+</p>
+
+<p style="margin-bottom: 15px;">
+Hermes Agent 就是他们把这些模型能力包装成产品的结果。官方 slogan 是<strong>"随你成长的 Agent"</strong>。听起来像吹牛？我一开始也这么觉得，但看完它的设计逻辑，我改主意了。
+</p>
+
+<h2 style="font-size: 18px; font-weight: bold; margin-top: 25px; margin-bottom: 15px; padding-left: 12px; border-left: 4px solid #07c160;">
+它怎么记住你？
+</h2>
+
+<p style="margin-bottom: 15px;">
+大多数 AI 解决"失忆"问题的方式是塞一个更大的上下文窗口。Hermes Agent 走了另一条路：给自己装了三层记忆系统。我管它叫<strong>"AI 三重大脑"</strong>。
+</p>
+
+<h3 style="font-size: 16px; font-weight: bold; margin-top: 20px; margin-bottom: 12px; color: #667eea;">
+第一重：最强大脑
+</h3>
+
+<p style="margin-bottom: 15px;">
+每次对话结束，内容自动存进 SQLite 数据库。下次你问"上次那个 Bug 后来怎么修的"，它会主动去搜，把相关片段捞出来，总结成结论塞进上下文。不是按时间线硬翻，是找相关性。你问它，它答得上来，就像真记得一样。
+</p>
+
+<h3 style="font-size: 16px; font-weight: bold; margin-top: 20px; margin-bottom: 12px; color: #667eea;">
+第二重：最懂你的大脑
+</h3>
+
+<p style="margin-bottom: 15px;">
+这层更厉害。它会在聊天过程中自己判断哪些东西值得长期记住——你的偏好、项目的技术栈、你反复提到的上下文，自动提炼，永久保存。
+</p>
+
+<p style="margin-bottom: 15px;">
+它还有个叫 <strong>Honcho</strong> 的组件，做用户建模。不是简单记你说了什么，而是尝试理解你这个人。你喜欢简洁回复还是详细解释？你是夜猫子还是早起党？你习惯用 Docker 还是直接裸跑？这些都会慢慢沉淀在它的记忆里。用得越久，它越懂你。
+</p>
+
+<h3 style="font-size: 16px; font-weight: bold; margin-top: 20px; margin-bottom: 12px; color: #667eea;">
+第三重：最勤奋的大脑
+</h3>
+
+<p style="margin-bottom: 15px;">
+这是 Hermes 最特别的设计。
+</p>
+
+<p style="margin-bottom: 15px;">
+你让它帮你完成一个复杂任务，比如"配个 Docker 环境部署 Next.js 项目"。它搞定之后，会自动把整个流程写成一份 <strong>Skill 文件</strong>——什么步骤、什么命令、踩过什么坑。下次遇到类似需求，直接调用，不用再教一遍。
+</p>
+
+<p style="margin-bottom: 15px;">
+更厉害的是，这个 Skill 还会自己优化。第一次配 Docker 写了 10 步，过了两周再让它配，它自己发现"Ubuntu 22.04 下步骤 5 到 7 可以合并"，直接精简成 8 步，还标注了"某系统下无需执行步骤 5"。不是人告诉它改的，是它用出来的经验。
+</p>
+
+<p style="margin-bottom: 15px;">
+Skills 还能分享到 <strong>agentskills.io</strong> 社区，你写的技能别人也能用。
+</p>
+
+<section style="background-color: #07c160; padding: 15px; border-radius: 8px; margin: 20px 0;">
+<p style="color: #fff; margin-bottom: 0; font-weight: bold; text-align: center;">
+三层记忆叠加，形成闭环。用得越多，它越懂你，能帮你搞定的事情越多。
+</p>
+</section>
+
+<p style="margin-bottom: 15px; color: #666; font-style: italic; text-align: center;">
+别的 AI 助手用一年，还是个陌生人。Hermes Agent 用一年，比你同事还了解你的项目。
+</p>
+
+<h2 style="font-size: 18px; font-weight: bold; margin-top: 25px; margin-bottom: 15px; padding-left: 12px; border-left: 4px solid #07c160;">
+你能拿它干什么？
+</h2>
+
+<section style="background-color: #fff; padding: 15px; border-radius: 8px; margin-bottom: 15px; border: 1px solid #e0e0e0;">
+<p style="font-weight: bold; color: #07c160; margin-bottom: 8px;">个人 AI 助手</p>
+<p style="margin-bottom: 0; color: #333;">
+在 Telegram 上跟它对话，同时它在云端 VM 上帮你跑任务。设置定时任务，让它每天早上给你推一份项目进度报告。你睡觉的时候，它在干活。
+</p>
+</section>
+
+<section style="background-color: #fff; padding: 15px; border-radius: 8px; margin-bottom: 15px; border: 1px solid #e0e0e0;">
+<p style="font-weight: bold; color: #07c160; margin-bottom: 8px;">开发者自动化</p>
+<p style="margin-bottom: 0; color: #333;">
+让它帮你并行处理多个工作流。跑终端命令、管理文件、搜索网页、执行代码。你盯着结果看就行，不用自己动手。
+</p>
+</section>
+
+<section style="background-color: #fff; padding: 15px; border-radius: 8px; margin-bottom: 15px; border: 1px solid #e0e0e0;">
+<p style="font-weight: bold; color: #07c160; margin-bottom: 8px;">研究搭子</p>
+<p style="margin-bottom: 0; color: #333;">
+内置网页搜索、内容提取、批处理。想查某个技术方案的对比？让它搜，让它总结，让它列个表格。你喝杯咖啡的功夫，它全搞定了。
+</p>
+</section>
+
+<h2 style="font-size: 18px; font-weight: bold; margin-top: 25px; margin-bottom: 15px; padding-left: 12px; border-left: 4px solid #07c160;">
+技术上也不差
+</h2>
+
+<p style="font-weight: bold; margin-bottom: 10px;">模型随便换</p>
+<p style="margin-bottom: 15px;">
+支持 OpenRouter（200+ 模型）、OpenAI API、本地 vLLM。想让写代码用一个模型，画图用另一个？一行命令的事：
+</p>
+
+<section style="background-color: #1a1a2e; padding: 12px 15px; border-radius: 6px; margin-bottom: 15px;">
+<p style="color: #07c160; font-family: monospace; margin-bottom: 0;">
+hermes model
+</p>
+</section>
+
+<p style="font-weight: bold; margin-bottom: 10px;">5 美元 VPS 就能跑</p>
+<p style="margin-bottom: 15px;">
+本地、Docker、SSH、Daytona、Singularity、Modal，六种运行后端。5 美元的 VPS 能跑，GPU 集群也能跑，闲置时几乎零成本。
+</p>
+
+<p style="font-weight: bold; margin-bottom: 10px;">40+ 开箱即用的工具</p>
+<p style="margin-bottom: 15px;">
+网页搜索、终端命令、文件操作、图像生成、TTS、视觉，常见需求不用自己写插件。
+</p>
+
+<p style="font-weight: bold; margin-bottom: 10px;">多平台接入</p>
+<p style="margin-bottom: 15px;">
+Telegram、Discord、Slack、WhatsApp、Signal、CLI，一个网关进程管所有。在 Telegram 开始聊，换到 Discord 可以接着聊。
+</p>
+
+<h2 style="font-size: 18px; font-weight: bold; margin-top: 25px; margin-bottom: 15px; padding-left: 12px; border-left: 4px solid #07c160;">
+Hermes vs OpenClaw，该选谁？
+</h2>
+
+<p style="margin-bottom: 15px; font-weight: bold; color: #07c160;">选 Hermes Agent 如果你：</p>
+<ul style="margin-left: 20px; margin-bottom: 15px; color: #333;">
+<li style="margin-bottom: 8px;">想要一个越用越懂你的私人助手</li>
+<li style="margin-bottom: 8px;">是个人开发者，喜欢 Python 生态</li>
+<li style="margin-bottom: 8px;">对 AI 训练、轨迹生成有需求</li>
+</ul>
+
+<p style="margin-bottom: 15px; font-weight: bold; color: #667eea;">选 OpenClaw 如果你：</p>
+<ul style="margin-left: 20px; margin-bottom: 15px; color: #333;">
+<li style="margin-bottom: 8px;">需要 50+ 消息渠道支持</li>
+<li style="margin-bottom: 8px;">想要最庞大的社区和插件生态</li>
+<li style="margin-bottom: 8px;">是团队协作场景，用 TypeScript/Node.js</li>
+</ul>
+
+<p style="margin-bottom: 15px;">
+OpenClaw 更像全能型选手，社区大、插件多、啥都能接。Hermes Agent 更像专精型选手，在个人使用场景下体验更好，尤其是记忆和学习这一块。
+</p>
+
+<p style="margin-bottom: 15px;">
+有意思的是，Hermes 内置了从 OpenClaw 一键迁移的工具。如果你在用 OpenClaw，想换个更懂你的，可以试试。官方有句话说得挺实在："<strong>两者服务的是不同用户群。</strong>"
+</p>
+
+<h2 style="font-size: 18px; font-weight: bold; margin-top: 25px; margin-bottom: 15px; padding-left: 12px; border-left: 4px solid #07c160;">
+5 分钟上手
+</h2>
+
+<p style="margin-bottom: 15px;">一行命令装好：</p>
+
+<section style="background-color: #1a1a2e; padding: 12px 15px; border-radius: 6px; margin-bottom: 15px;">
+<p style="color: #07c160; font-family: monospace; margin-bottom: 0; font-size: 14px; word-break: break-all;">
+curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash
+</p>
+</section>
+
+<p style="margin-bottom: 15px;">
+装完跑 <code style="background-color: #f0f0f0; padding: 2px 6px; border-radius: 4px; font-size: 14px;">hermes setup</code>，五分钟配置好就能开始聊。
+</p>
+
+<p style="margin-bottom: 15px;">
+Linux、macOS、WSL2 都支持。Android 还能装在 Termux 里当随身助手。Windows 用户需要先装 WSL2，也不复杂。
+</p>
+
+<hr style="border: none; border-top: 1px solid #ddd; margin: 30px 0;" />
+
+<h2 style="font-size: 18px; font-weight: bold; margin-top: 25px; margin-bottom: 15px; padding-left: 12px; border-left: 4px solid #07c160;">
+最后
+</h2>
+
+<p style="margin-bottom: 15px;">
+AI 助手发展到现在，大多数产品还停留在你问我答的阶段。Hermes Agent 想往前走一步：让 AI 真的记住你，而且越用越好。
+</p>
+
+<p style="margin-bottom: 15px;">
+不是靠更大的上下文窗口，是靠三重大脑——<strong>会话记忆、知识记忆、技能记忆</strong>。这套东西跑起来，用得越久，它对你的了解越深。
+</p>
+
+<p style="margin-bottom: 15px;">
+它不是最完美的产品，但它是目前少数几个真正在解决 AI 失忆问题的项目之一。
+</p>
+
+<p style="margin-bottom: 15px;">
+感兴趣的可以去官网看看。
+</p>
+
+<section style="background-color: #07c160; padding: 20px; border-radius: 8px; margin: 25px 0; text-align: center;">
+<p style="color: #fff; font-size: 18px; font-weight: bold; margin-bottom: 10px;">
+一个 AI 能记住你的日子，才是真正的 AI 助手该有的样子。
+</p>
+</section>
+
+<hr style="border: none; border-top: 1px solid #ddd; margin: 30px 0;" />
+
+<p style="text-align: center; color: #666; margin-bottom: 10px;">
+官网：<a href="https://hermesagent.agency" style="color: #07c160; text-decoration: none;">hermesagent.agency</a>
+</p>
+<p style="text-align: center; color: #666; margin-bottom: 0;">
+GitHub：<a href="https://github.com/NousResearch/Hermes-Agent" style="color: #07c160; text-decoration: none;">github.com/NousResearch/Hermes-Agent</a>
+</p>
+
+</section>
+</body>
+</html>
