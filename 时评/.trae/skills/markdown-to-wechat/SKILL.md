@@ -18,7 +18,8 @@ This skill converts markdown articles into HTML format suitable for WeChat publi
 
 1. **Source Markdown File**: Path to the markdown article to convert
 2. **HTML Specification Document**: `publish/微信公众号HTML支持说明.md` - Contains WeChat HTML rules and limitations
-3. **Output Directory**: `publish/tmp/`
+3. **HTML Template File**: `publish/公众号模板.html` - The template to use for generated HTML
+4. **Output Directory**: `publish/tmp/`
 
 ## Key WeChat HTML Rules
 
@@ -49,79 +50,78 @@ This skill converts markdown articles into HTML format suitable for WeChat publi
 
 ## Output Structure
 
-```html
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>文章标题</title>
-</head>
-<body style="margin: 0; padding: 0; background-color: #f5f5f5;">
-    <section style="padding: 20px 15px; font-size: 16px; color: #333; line-height: 1.8; text-align: left;">
+Use the `publish/公众号模板.html` as the base template. Replace the placeholder content in the template with the converted markdown content while preserving the template's styling and layout structure.
 
-        <!-- H1 title -->
-        <h1 style="...">文章标题</h1>
+**Template Structure to Preserve:**
+- Head section with meta tags and title
+- Body wrapper with max-width container
+- H1 title area
+- Subtitle/description area
+- Cover image area
+- Lead/intro box
+- Content sections
+- H2 section headers with left border accent
+- Various content blocks (cards, lists, quotes)
+- Bottom attention box
+- Copyright area
 
-        <!-- Introduction/Lead -->
-        <p style="...">引言内容</p>
-
-        <!-- H2 section headers with left border -->
-        <h2 style="padding-left: 12px; border-left: 4px solid #07c160; ...">小节标题</h2>
-
-        <!-- Content sections (cards/boxes) -->
-        <section style="background-color: #f0f4ff; padding: 15px; border-radius: 8px; ...">
-            <p>内容</p>
-        </section>
-
-        <!-- Lists -->
-        <ul style="margin-left: 20px; ...">
-            <li style="margin-bottom: 8px;">列表项</li>
-        </ul>
-
-        <!-- Divider -->
-        <hr style="border: none; border-top: 1px solid #ddd; margin: 30px 0;" />
-
-        <!-- Conclusion -->
-        <p style="...">结尾内容</p>
-
-    </section>
-</body>
-</html>
-```
+**Content Placement Rules:**
+- Article title → `<h1>` tag
+- Subtitle/date → `<p>` subtitle tag
+- Lead/intro → the `#f7f8fa` background box with left border
+- H2 headers → `<h2>` with `border-left: 4px solid #4e9eff`
+- Body paragraphs → `<p>` with `text-indent: 2em`
+- Highlight boxes → `#fff5cc` background style
+- Blockquotes → `<blockquote>` with gray left border
+- Lists → div with padding-left containing paragraphs
+- Images → div with border-radius and img inside
+- Dividers → `<div>` with height 1px gray line
+- Conclusion → standard `<p>` paragraphs
 
 ## Styling Recommendations
 
-### Color Palette
-- Primary accent: `#07c160` (WeChat green)
-- Secondary accent: `#667eea` (purple for highlights)
-- Title dark: `#1a1a2e`
-- Body text: `#333` or `#2c3e50`
-- Muted text: `#666` or `#888`
-- Background: `#f5f5f5` (light gray)
-- Card backgrounds: `#fff`, `#f0f4ff`
+### Color Palette (from template)
+- Primary accent: `#4e9eff` (blue accent)
+- Secondary accent: `#6688ff` (purple-blue)
+- Title dark: `#222`
+- Body text: `#333` or `#555`
+- Muted text: `#999`
+- Background: `#f4f4f4` (light gray)
+- Card backgrounds: `#fff`, `#f7f8fa`, `#fff5cc`
 
-### Typography
-- Font size: 16px (body), 14px (intro), 17-20px (headers)
-- Line height: 1.8 for readability
-- H1 title: centered, bold, larger font
+### Typography (from template)
+- Font size: 16px (body), 14px (subtitle/intro), 19px (h2), 17px (h3)
+- Line height: 1.75
+- H1 title: centered, bold, 22px
+- Font family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Arial, sans-serif
 
-### Visual Elements
-- H2 headers: left border accent (4px solid color)
-- Important sections: card style with background color
-- Strategy items: white cards with subtle border
-- Separators: thin horizontal lines
+### Visual Elements (from template)
+- H2 headers: left border accent (4px solid #4e9eff)
+- Important sections: yellow highlight box (#fff5cc)
+- Lead/intro: gray background box with blue left border
+- Cover images: full-width with border-radius
+- Dividers: 1px gray lines, centered, 35px margin
 
 ## Execution Steps
 
 1. Read the source markdown article
 2. Read the HTML specification document (`publish/微信公众号HTML支持说明.md`)
-3. Parse markdown structure (headers, paragraphs, lists, quotes)
-4. Convert to HTML with inline styles following the rules
-5. Apply beautiful styling consistent with WeChat aesthetics
-6. Ensure left-aligned layout with no left margin
-7. Save to `publish/tmp/` directory with `.html` extension
-8. Report success to user
+3. Read the HTML template file (`publish/公众号模板.html`)
+4. Parse markdown structure (headers, paragraphs, lists, quotes, images)
+5. Map markdown elements to template structure:
+   - H1 → article title (centered, bold, 22px)
+   - Lead paragraph → intro box (gray background with blue left border)
+   - H2 → section headers (left border accent)
+   - Paragraphs → body text with text-indent
+   - Emphasis → yellow highlight boxes
+   - Blockquotes → gray left border quote style
+   - Images → full-width image containers
+   - Lists → indented paragraph lists
+   - Dividers → centered gray lines
+6. Fill the template with converted content, preserving all template styling
+7. Ensure left-aligned layout with proper text-indent for paragraphs
+8. Save to `publish/tmp/` directory with `.html` extension
+9. Report success to user
 
 ## File Naming
 
