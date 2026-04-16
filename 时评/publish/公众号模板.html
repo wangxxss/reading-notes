@@ -61,16 +61,22 @@
 </div>
 
 <!-- 代码块（多行代码，高亮样式） -->
-<p style="margin:0 0 10px; font-weight:500; color:#0f172a;">多行代码块展示：</p>
-<pre style="background:#0f172a; color:#e2e8f0; padding:20px; border-radius:12px; overflow-x:auto; font-family:Menlo,Monaco,'Courier New',monospace; font-size:15px; line-height:1.7; margin:0 0 24px; border-left:4px solid #2563eb;">
-<code>// 科技感深色代码块 · 公众号完美显示
-function hello() {
-  console.log("欢迎使用代码模板");
-  return "成功";
-}
-
-// 调用
-hello();</code></pre>
+<p style="margin:0 0 10px; font-weight:500; color:#0f172a;">嵌套子查询 vs CTE 对比：</p>
+<pre style="background:#0f172a; color:#e2e8f0; padding:20px; border-radius:12px; overflow-x:auto; font-family:Menlo,Monaco,'Courier New',monospace; font-size:14px; line-height:1.8; margin:0 0 24px; border-left:4px solid #2563eb;"><code><span class="code-snippet__comment">-- 嵌套子查询：由内向外读，层层剥开才能理解</span></code>
+<code><span class="code-snippet__keyword">SELECT</span> <span class="code-snippet__operator">*</span> <span class="code-snippet__keyword">FROM</span> (</code>
+<code>    <span class="code-snippet__keyword">SELECT</span> <span class="code-snippet__operator">*</span> <span class="code-snippet__keyword">FROM</span> (</code>
+<code>        <span class="code-snippet__keyword">SELECT</span> dept_id, <span class="code-snippet__built_in">SUM</span>(salary) <span class="code-snippet__keyword">AS</span> total <span class="code-snippet__keyword">FROM</span> employees <span class="code-snippet__keyword">GROUP</span> <span class="code-snippet__keyword">BY</span> dept_id</code>
+<code>    ) t1 <span class="code-snippet__keyword">WHERE</span> total <span class="code-snippet__operator">&gt;</span> <span class="code-snippet__number">50000</span></code>
+<code>) t2 <span class="code-snippet__keyword">WHERE</span> dept_id <span class="code-snippet__keyword">IN</span> (<span class="code-snippet__keyword">SELECT</span> dept_id <span class="code-snippet__keyword">FROM</span> active_depts);</code>
+<code><span class="code-snippet__comment">-- CTE：从上到下读，每一步都有名字</span></code>
+<code><span class="code-snippet__keyword">WITH</span> dept_salary <span class="code-snippet__keyword">AS</span> (</code>
+<code>    <span class="code-snippet__keyword">SELECT</span> dept_id, <span class="code-snippet__built_in">SUM</span>(salary) <span class="code-snippet__keyword">AS</span> total <span class="code-snippet__keyword">FROM</span> employees <span class="code-snippet__keyword">GROUP</span> <span class="code-snippet__keyword">BY</span> dept_id</code>
+<code>),</code>
+<code>high_salary_dept <span class="code-snippet__keyword">AS</span> (</code>
+<code>    <span class="code-snippet__keyword">SELECT</span> <span class="code-snippet__operator">*</span> <span class="code-snippet__keyword">FROM</span> dept_salary <span class="code-snippet__keyword">WHERE</span> total <span class="code-snippet__operator">&gt;</span> <span class="code-snippet__number">50000</span></code>
+<code>)</code>
+<code><span class="code-snippet__keyword">SELECT</span> <span class="code-snippet__operator">*</span> <span class="code-snippet__keyword">FROM</span> high_salary_dept</code>
+<code><span class="code-snippet__keyword">WHERE</span> dept_id <span class="code-snippet__keyword">IN</span> (<span class="code-snippet__keyword">SELECT</span> dept_id <span class="code-snippet__keyword">FROM</span> active_depts);</code></pre>
 
 <!-- 引用段落 -->
 <blockquote style="border-left:4px solid #2563eb; padding:14px 16px; margin:0 0 28px; color:#475569; font-style:normal; background:#f8fafc; border-radius:0 8px 8px 0;">

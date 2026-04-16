@@ -1,2 +1,4 @@
 */.claude/*
 /时评/publish/config.properties
+/时评/publish/tmp/*.md
+/时评/publish/tmp/*.html
