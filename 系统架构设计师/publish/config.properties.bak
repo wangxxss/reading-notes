@@ -1,0 +1,11 @@
+[weixin]
+appid = 
+secret = 
+
+[article]
+html_file = tmp/
+title = 
+digest = 
+
+[publish]
+thumb_media_id = 96S8nEuNSKB1c3JGOfiU23SEFs2RM-7375B_ZH2erqecUCreN39iOYFGabrYQ3PN
