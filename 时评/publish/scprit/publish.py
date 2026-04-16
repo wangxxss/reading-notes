@@ -37,8 +37,8 @@ draft_data = {
         'digest': digest,
         'content': html_content,
         'thumb_media_id': config['publish']['thumb_media_id'],
-        'need_open_comment': 0,
-        'only_fans_can_comment': 0
+        'need_open_comment': 1,
+        'only_fans_can_comment': 1
     }]
 }
 
