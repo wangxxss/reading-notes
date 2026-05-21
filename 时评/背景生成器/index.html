@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PPT 科技感背景生成器</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;500;600;700&family=Ma+Shan+Zheng&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app">
+    <!-- 左侧控制面板 -->
+    <aside class="panel">
+      <div class="panel-header">
+        <span class="logo-dot"></span>
+        <h1>PPT BG GENERATOR</h1>
+        <span class="version">v1.0</span>
+      </div>
+
+      <div class="form-group">
+        <label>STYLE / 风格</label>
+        <div class="style-picker">
+          <button class="style-btn active" data-style="tech">
+            <span class="style-ico tech-ico"></span>
+            科技感
+          </button>
+          <button class="style-btn" data-style="warm">
+            <span class="style-ico warm-ico"></span>
+            温情
+          </button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>TITLE / 标题</label>
+        <input id="title-input" type="text" maxlength="40"
+               value="未来已来" placeholder="输入标题..." />
+      </div>
+
+      <div class="form-group">
+        <label>SUBTITLE / 副标题</label>
+        <input id="subtitle-input" type="text" maxlength="60"
+               value="THE FUTURE IS NOW" placeholder="输入副标题（英文更带感）..." />
+      </div>
+
+      <div class="form-group">
+        <label>SUMMARY / 摘要</label>
+        <textarea id="summary-input" rows="6" maxlength="240"
+                  placeholder="输入摘要内容...">在人工智能与算力革命的浪潮中，重新定义生产力的边界，探索属于这个时代的可能性。</textarea>
+      </div>
+
+      <div class="form-group">
+        <label>THEME / 主题色</label>
+        <div class="theme-picker">
+          <button class="theme-btn active" data-theme="cyan" style="--c1:#00d4ff;--c2:#0066ff;"></button>
+          <button class="theme-btn" data-theme="purple" style="--c1:#a855f7;--c2:#ec4899;"></button>
+          <button class="theme-btn" data-theme="green" style="--c1:#10b981;--c2:#06b6d4;"></button>
+          <button class="theme-btn" data-theme="orange" style="--c1:#f97316;--c2:#ef4444;"></button>
+          <button class="theme-btn" data-theme="gold" style="--c1:#fbbf24;--c2:#f59e0b;"></button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>LAYOUT / 布局</label>
+        <div class="layout-picker">
+          <button class="layout-btn active" data-layout="center">居中</button>
+          <button class="layout-btn" data-layout="left">左对齐</button>
+          <button class="layout-btn" data-layout="split">分屏</button>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="download-btn" class="primary-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+          </svg>
+          导出 PNG 图片
+        </button>
+        <button id="fullscreen-btn" class="ghost-btn">全屏预览</button>
+      </div>
+
+      <div class="hint">
+        <p>· 实时预览，所见即所得</p>
+        <p>· 导出为 1920×1080 PNG</p>
+        <p>· 直接拖入 PPT 即可使用</p>
+      </div>
+    </aside>
+
+    <!-- 右侧预览区 -->
+    <main class="preview-wrap">
+      <div class="preview-frame">
+        <div id="slide" class="slide style-tech theme-cyan layout-center">
+          <!-- ========== 科技感装饰 ========== -->
+          <div class="tech-deco">
+          <!-- 背景网格 -->
+          <div class="grid-bg"></div>
+
+          <!-- 渐变光晕 -->
+          <div class="glow glow-1"></div>
+          <div class="glow glow-2"></div>
+
+          <!-- 装饰：电路点阵 -->
+          <svg class="circuit" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <pattern id="dotPattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                <circle cx="2" cy="2" r="1" fill="currentColor" opacity="0.4"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#dotPattern)"/>
+            <!-- 装饰线条 -->
+            <path d="M 0 200 L 400 200 L 450 250 L 800 250" stroke="currentColor" stroke-width="1" fill="none" opacity="0.3"/>
+            <path d="M 1920 880 L 1500 880 L 1450 830 L 1100 830" stroke="currentColor" stroke-width="1" fill="none" opacity="0.3"/>
+            <circle cx="400" cy="200" r="4" fill="currentColor" opacity="0.6"/>
+            <circle cx="1500" cy="880" r="4" fill="currentColor" opacity="0.6"/>
+          </svg>
+
+          <!-- 四角装饰 -->
+          <div class="corner corner-tl">
+            <span class="corner-line h"></span>
+            <span class="corner-line v"></span>
+          </div>
+          <div class="corner corner-tr">
+            <span class="corner-line h"></span>
+            <span class="corner-line v"></span>
+          </div>
+          <div class="corner corner-bl">
+            <span class="corner-line h"></span>
+            <span class="corner-line v"></span>
+          </div>
+          <div class="corner corner-br">
+            <span class="corner-line h"></span>
+            <span class="corner-line v"></span>
+          </div>
+
+          <!-- 顶部 HUD -->
+          <div class="hud-top">
+            <span class="hud-tag">// SYSTEM ONLINE</span>
+            <span class="hud-tag" id="hud-date">2026.05.21</span>
+          </div>
+
+          <!-- 底部 HUD -->
+          <div class="hud-bottom">
+            <div class="hud-bars">
+              <span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <span class="hud-tag">CH.01 / FRAME.001</span>
+          </div>
+          </div>
+          <!-- ========== /科技感装饰 ========== -->
+
+          <!-- ========== 温情风装饰 ========== -->
+          <div class="warm-deco">
+            <!-- 米色底纸纹理 -->
+            <div class="paper-bg"></div>
+
+            <!-- 柔和光斑 -->
+            <div class="soft-blob blob-1"></div>
+            <div class="soft-blob blob-2"></div>
+            <div class="soft-blob blob-3"></div>
+            <div class="soft-blob blob-4"></div>
+
+            <!-- 左上角小花 -->
+            <svg class="warm-corner warm-corner-tl" viewBox="0 0 200 200" fill="none" stroke="currentColor">
+              <circle cx="40" cy="40" r="6" fill="currentColor"/>
+              <path d="M 40 50 Q 40 90, 60 110 Q 80 130, 120 130" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+              <path d="M 60 60 Q 70 70, 90 65" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
+              <ellipse cx="100" cy="125" rx="14" ry="6" transform="rotate(20 100 125)" fill="currentColor" opacity="0.4"/>
+              <ellipse cx="115" cy="115" rx="10" ry="5" transform="rotate(-20 115 115)" fill="currentColor" opacity="0.3"/>
+            </svg>
+
+            <!-- 右下角小花 -->
+            <svg class="warm-corner warm-corner-br" viewBox="0 0 200 200" fill="none" stroke="currentColor">
+              <circle cx="160" cy="160" r="6" fill="currentColor"/>
+              <path d="M 160 150 Q 160 110, 140 90 Q 120 70, 80 70" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+              <path d="M 140 140 Q 130 130, 110 135" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
+              <ellipse cx="100" cy="75" rx="14" ry="6" transform="rotate(20 100 75)" fill="currentColor" opacity="0.4"/>
+              <ellipse cx="85" cy="85" rx="10" ry="5" transform="rotate(-20 85 85)" fill="currentColor" opacity="0.3"/>
+            </svg>
+
+            <!-- 顶部居中：印章风格的小符号 -->
+            <div class="warm-top">
+              <span class="warm-dot"></span>
+              <span class="warm-line"></span>
+              <span class="warm-dot"></span>
+            </div>
+
+            <!-- 底部居中：署名 -->
+            <div class="warm-bottom">
+              <span class="warm-line short"></span>
+              <span class="warm-sig" id="warm-sig">— 写于 时光里 —</span>
+              <span class="warm-line short"></span>
+            </div>
+          </div>
+          <!-- ========== /温情风装饰 ========== -->
+
+          <!-- 主内容 -->
+          <div class="content">
+            <div class="content-meta">
+              <span class="meta-bar"></span>
+              <span class="meta-text">CHAPTER · 01</span>
+            </div>
+            <h2 id="title-text" class="title">未来已来</h2>
+            <p id="subtitle-text" class="subtitle">THE FUTURE IS NOW</p>
+            <div class="divider"></div>
+            <p id="summary-text" class="summary">
+              在人工智能与算力革命的浪潮中，重新定义生产力的边界，探索属于这个时代的可能性。
+            </p>
+          </div>
+
+          <!-- 右侧装饰：数据条 -->
+          <div class="side-decor">
+            <div class="data-line">
+              <span class="dot"></span>
+              <span class="line"></span>
+              <span class="num">01</span>
+            </div>
+            <div class="data-line">
+              <span class="dot"></span>
+              <span class="line short"></span>
+              <span class="num">02</span>
+            </div>
+            <div class="data-line">
+              <span class="dot"></span>
+              <span class="line"></span>
+              <span class="num">03</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="preview-info">
+        <span>1920 × 1080</span>
+        <span>·</span>
+        <span>16:9</span>
+        <span>·</span>
+        <span id="char-count">0 字符</span>
+      </div>
+    </main>
+  </div>
+
+  <!-- html2canvas 用于导出 PNG -->
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
