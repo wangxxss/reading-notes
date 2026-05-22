@@ -8,7 +8,6 @@ const summaryText = document.getElementById('summary-text');
 const slide = document.getElementById('slide');
 const hudDate = document.getElementById('hud-date');
 const charCount = document.getElementById('char-count');
-const downloadBtn = document.getElementById('download-btn');
 const fullscreenBtn = document.getElementById('fullscreen-btn');
 const previewFrame = document.querySelector('.preview-frame');
 
@@ -130,64 +129,6 @@ window.addEventListener('resize', resizeSlide);
 // 等字体加载完成后再缩放，避免抖动
 window.addEventListener('load', resizeSlide);
 setTimeout(resizeSlide, 100);
-
-// ============ 导出 PNG ============
-downloadBtn.addEventListener('click', async () => {
-  const originalTransform = slide.style.transform;
-  slide.style.transform = 'scale(1)';
-
-  // 临时把 slide 移出可视区域用于截图（保持原始 1920x1080）
-  const originalPosition = slide.style.position;
-  const originalLeft = slide.style.left;
-  const originalTop = slide.style.top;
-  slide.style.position = 'fixed';
-  slide.style.left = '0';
-  slide.style.top = '0';
-  slide.style.zIndex = '-1';
-
-  downloadBtn.disabled = true;
-  downloadBtn.textContent = '导出中...';
-
-  try {
-    const canvas = await html2canvas(slide, {
-      width: 1920,
-      height: 1080,
-      scale: 1,
-      backgroundColor: null,
-      useCORS: true,
-      logging: false
-    });
-
-    canvas.toBlob((blob) => {
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      const title = (titleInput.value || 'slide').replace(/[\\/:*?"<>|]/g, '_');
-      a.href = url;
-      a.download = `${title}-${Date.now()}.png`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    }, 'image/png');
-  } catch (err) {
-    alert('导出失败：' + err.message);
-    console.error(err);
-  } finally {
-    slide.style.transform = originalTransform;
-    slide.style.position = originalPosition;
-    slide.style.left = originalLeft;
-    slide.style.top = originalTop;
-    slide.style.zIndex = '';
-    downloadBtn.disabled = false;
-    downloadBtn.innerHTML = `
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
-      </svg>
-      导出 PNG 图片
-    `;
-    resizeSlide();
-  }
-});
 
 // ============ 全屏预览 ============
 fullscreenBtn.addEventListener('click', () => {

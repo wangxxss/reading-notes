@@ -70,19 +70,18 @@
       </div>
 
       <div class="actions">
-        <button id="download-btn" class="primary-btn">
+        <button id="fullscreen-btn" class="primary-btn">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
           </svg>
-          导出 PNG 图片
+          全屏预览
         </button>
-        <button id="fullscreen-btn" class="ghost-btn">全屏预览</button>
       </div>
 
       <div class="hint">
         <p>· 实时预览，所见即所得</p>
-        <p>· 导出为 1920×1080 PNG</p>
-        <p>· 直接拖入 PPT 即可使用</p>
+        <p>· 全屏后截图保存即可使用</p>
+        <p>· 16:9 比例，适配标准 PPT</p>
       </div>
     </aside>
 
@@ -239,8 +238,6 @@
     </main>
   </div>
 
-  <!-- html2canvas 用于导出 PNG -->
-  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
