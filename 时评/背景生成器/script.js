@@ -22,22 +22,31 @@ function syncText() {
 
 // 标题自适应：从最大字号递减，直到单行不溢出（或到达最小值）
 function fitTitle() {
-  const isWarm = slide.classList.contains('style-warm');
-  const max = isWarm ? 140 : 128;
+  // 根据当前风格挑选基础字号 / 字距
+  let max, baseSpacing;
+  if (slide.classList.contains('style-warm')) {
+    max = 140; baseSpacing = 12;
+  } else if (slide.classList.contains('style-mono')) {
+    max = 168; baseSpacing = 2;
+  } else if (slide.classList.contains('style-guofeng')) {
+    max = 150; baseSpacing = 14;
+  } else if (slide.classList.contains('style-fresh')) {
+    max = 140; baseSpacing = 6;
+  } else {
+    max = 128; baseSpacing = 4;
+  }
   const min = 56;
   const step = 4;
 
-  // 同步缩小字间距，避免字数多时还撑得很开
   let size = max;
   titleText.style.fontSize = size + 'px';
-  titleText.style.letterSpacing = (isWarm ? 12 : 4) + 'px';
+  titleText.style.letterSpacing = baseSpacing + 'px';
 
   while (titleText.scrollWidth > titleText.clientWidth && size > min) {
     size -= step;
     titleText.style.fontSize = size + 'px';
-    // 字号变小时，字间距也按比例收一点
     const ratio = size / max;
-    titleText.style.letterSpacing = ((isWarm ? 12 : 4) * ratio).toFixed(1) + 'px';
+    titleText.style.letterSpacing = (baseSpacing * ratio).toFixed(1) + 'px';
   }
 }
 
@@ -52,7 +61,10 @@ function updateDate() {
   const y = d.getFullYear();
   const m = String(d.getMonth() + 1).padStart(2, '0');
   const day = String(d.getDate()).padStart(2, '0');
-  hudDate.textContent = `${y}.${m}.${day}`;
+  const dateStr = `${y}.${m}.${day}`;
+  hudDate.textContent = dateStr;
+  const monoTime = document.getElementById('mono-time');
+  if (monoTime) monoTime.textContent = dateStr;
 }
 updateDate();
 
@@ -63,10 +75,25 @@ const stylePresets = {
     subtitle: 'THE FUTURE IS NOW',
     summary: '在人工智能与算力革命的浪潮中，重新定义生产力的边界，探索属于这个时代的可能性。'
   },
+  mono: {
+    title: '少即是多',
+    subtitle: 'LESS IS MORE',
+    summary: '删繁就简，回归本质。在这个被信息淹没的时代，让设计回到最初的纯粹与克制。'
+  },
   warm: {
     title: '人间值得',
     subtitle: '愿你 不负 时光',
     summary: '愿你历经山河，仍觉人间值得；愿你走过千帆，归来仍是少年。把每一个寻常日子，过成想要的模样。'
+  },
+  guofeng: {
+    title: '山河岁月',
+    subtitle: '一纸长卷 千年清风',
+    summary: '笔墨纸砚之间，藏着千年的山河岁月。一卷长卷，一段往事，一壶茶里见乾坤，方寸之地有天地。'
+  },
+  fresh: {
+    title: '慢一点',
+    subtitle: 'slow living',
+    summary: '一杯茶、一本书、一缕阳光。把日子过慢一点，让心安静一点，把每个清晨都过成想留住的样子。'
   }
 };
 

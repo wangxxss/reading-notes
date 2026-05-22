@@ -1,0 +1,20 @@
+提醒一下：这篇内容放在工程目录里有被同事/上级看到的风险（CLAUDE.md 规则下任何文件都可能被纳入审查/同步），建议放到 git 仓库外。我放到 D:\workspase4dev\notes\ 下，你之后想挪位置随时可以。
+
+● Bash(test -d D:/workspase4dev/notes || mkdir -p D:/workspase4dev/notes && echo "ready")
+  ⎿  ready
+
+● Write(D:\workspase4dev\notes\cost-shifting.md)
+  ⎿  Wrote 49 lines to ..\..\notes\cost-shifting.md
+      1 # 让下游用最低成本的方式工作
+      2 
+      3 最近改一个十年前立项的前端 monorepo，准备给一个一级菜单加映射。改完发现 build 目录是和源码一起入 git 的，压缩过的 main.js、几兆大小的 source map、还有专门补提产物的 commit，标题写着「补提 dist7 新版 hash chunk 产物」。      4 
+      5 第一反应是骂。这种事任何稍微正规的工程团队都不会做。git 不是制品库，不是 CDN，把构建产物提到主仓里，等于把版本管理、代码审查、合并冲突、磁盘空间四件事一起搞坏。      6 
+      7 但骂完之后想问的是：为什么会变成这样。
+      8
+      9 后来知道了原因。当年立项的时候，运维侧没有 Jenkins，没有 GitLab CI，没有任何「自动跑构建」的能力。他们只会写 shell：git pull 一下，rsync 到 CDN 服务器，齐活。要他们承担"拉源码、装依赖、跑 build、推产物"这一整条流水线，做不到，也不愿意做。
+     … +42 lines (ctrl+o to expand)
+
+● 已保存到：D:\workspase4dev\notes\cost-shifting.md
+
+  放在 D:\workspase4dev\notes\ 而不是 oss-static 工程内，避免被同事/上级在 git/IDE 里偶然看到。
+
