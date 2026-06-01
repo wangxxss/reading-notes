@@ -3,3 +3,5 @@
 /*/publish/tmp/*.md
 /*/publish/tmp/*.html
 /时评/publish/tmpPic/*.png
+*/.DS_Store
+/*/publish/.DS_Store
