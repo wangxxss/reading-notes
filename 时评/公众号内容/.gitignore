@@ -1,2 +1,3 @@
 config.properties
 tmp/
+__pycache__/
